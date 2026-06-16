@@ -140,24 +140,6 @@ export default function MainWebsite({ config, onNavigateToAdmin }: MainWebsitePr
       <div className="absolute top-[40%] right-1/4 w-[600px] h-[600px] rounded-full blur-[180px] opacity-[0.05] pointer-events-none" style={accentBg} />
       <div className="absolute bottom-[10%] left-10 w-[400px] h-[400px] rounded-full blur-[130px] opacity-[0.06] pointer-events-none" style={accentBg} />
 
-      {/* ADMIN SHORTCUT FLOATER -> If rendered in build, allows admins to easily trigger edit mode */}
-      {onNavigateToAdmin && (
-        <div className="fixed bottom-6 right-6 z-50">
-          <button 
-            id="btn-admin-shortcut"
-            onClick={onNavigateToAdmin}
-            className="flex items-center gap-2 px-5 py-3 rounded-full font-semibold text-black shadow-lg hover:scale-105 duration-200 cursor-pointer text-sm animate-pulse"
-            style={accentBg}
-          >
-            <span className="flex h-2 w-2 relative">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75 bg-slate-900"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-slate-800"></span>
-            </span>
-            실시간 편집기 / 관리자 대시보드
-          </button>
-        </div>
-      )}
-
       {/* HEADER */}
       <header className="sticky top-0 z-40 w-full bg-black/75 backdrop-blur-md border-b border-white/5 py-4 px-6 md:px-12 flex justify-between items-center transition-all">
         <div className="flex items-center gap-3">
@@ -528,7 +510,7 @@ export default function MainWebsite({ config, onNavigateToAdmin }: MainWebsitePr
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75 bg-emerald-400"></span>
                     <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500" style={accentBg}></span>
                   </span>
-                  <span className="text-xs font-bold text-white">일송 법률빌딩 502호</span>
+                  <span className="text-xs font-bold text-white">법률사무소 일송 민석타워 206호</span>
                 </div>
                 
                 <a 

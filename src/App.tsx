@@ -20,12 +20,23 @@ import MainWebsite from "./components/MainWebsite";
 
 export default function App() {
   const [config, setConfig] = useState<SiteConfig>(initialSiteConfig);
-  const [viewMode, setViewMode] = useState<"split" | "website" | "admin">("split");
+  const [viewMode, setViewMode] = useState<"split" | "website" | "admin">("website");
   const [deviceSim, setDeviceSim] = useState<"desktop" | "mobile">("desktop");
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState<boolean>(false);
+  const [isAdminMode, setIsAdminMode] = useState<boolean>(false);
 
   // Load from local storage on mount
   useEffect(() => {
+    // Check if user is in admin editing mode via URL query or hash
+    const hasAdminQuery = window.location.search.includes("admin") || window.location.hash.includes("admin");
+    if (hasAdminQuery) {
+      setIsAdminMode(true);
+      setViewMode("split");
+    } else {
+      setIsAdminMode(false);
+      setViewMode("website");
+    }
+
     try {
       const savedConfigV6 = localStorage.getItem("ilsong_law_site_config_v6");
       const savedConfigV5 = localStorage.getItem("ilsong_law_site_config_v5");
@@ -139,6 +150,22 @@ export default function App() {
       document.title = config.seo.metaTitle || "부동산 형사전문 공동법률사무소 일송";
     }
   }, [config]);
+
+  // If NOT in admin mode, show the premium MainWebsite clean and full screen directly without any framing or control bar.
+  if (!isAdminMode) {
+    return (
+      <div className="w-screen h-screen bg-slate-950 overflow-y-auto">
+        <MainWebsite 
+          config={config}
+          onNavigateToAdmin={() => {
+            // Activating admin mode on demand
+            setIsAdminMode(true);
+            setViewMode("split");
+          }}
+        />
+      </div>
+    );
+  }
 
   return (
     <div className="flex flex-col h-screen w-screen bg-slate-950 overflow-hidden font-sans select-none">
