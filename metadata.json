@@ -1,0 +1,6 @@
+{
+  "name": "일송 공동법률사무소",
+  "description": "부동산 형사전문 변호사 공동법률사무소 일송 - 프리미엄 법률 서비스 및 CMS 대시보드",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
