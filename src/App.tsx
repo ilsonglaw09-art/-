@@ -27,12 +27,15 @@ export default function App() {
   // Load from local storage on mount
   useEffect(() => {
     try {
+      const savedConfigV6 = localStorage.getItem("ilsong_law_site_config_v6");
       const savedConfigV5 = localStorage.getItem("ilsong_law_site_config_v5");
       const savedConfigV4 = localStorage.getItem("ilsong_law_site_config_v4");
       const savedConfigV2 = localStorage.getItem("ilsong_law_site_config_v2");
       
       let finalConfig: SiteConfig | null = null;
-      if (savedConfigV5) {
+      if (savedConfigV6) {
+        finalConfig = JSON.parse(savedConfigV6);
+      } else if (savedConfigV5) {
         finalConfig = JSON.parse(savedConfigV5);
       } else if (savedConfigV4) {
         finalConfig = JSON.parse(savedConfigV4);
@@ -56,7 +59,7 @@ export default function App() {
         finalConfig.heroSubtitle = "부동산 분쟁, 임대차 분쟁, 명도소송, 기획부동산 사기, 지역주택조합 분쟁, 시행 계약 사기, 전세 사기 등 복잡한 부동산 형사 사건을 박미소·오지성 대표변호사와 부동산 형사전문 공동법률사무소 일송이 동행합니다.";
         finalConfig.aboutText = "부동산 법률 분쟁은 일반 민사 소송뿐만 아니라 형사 고소가 맞물려 진행되는 복잡한 소송입니다. 공동법률사무소 일송은 부동산 법리와 형사 소송 절차 모두를 완벽히 꿰뚫는 부동산 형사 전문 변호사들로 구성되어 있습니다. 의뢰인의 재산과 자유를 구제하기 위해 맞춤형 전략을 수립합니다.";
         finalConfig.consultationPhone = "042-471-7770";
-        finalConfig.address = "대전 서구 둔산중로 78번길 26, 206호(둔산동, 명진빌딩)";
+        finalConfig.address = "대전 서구 둔산중로 78번길 26, 206호(둔산동, 민석타워)";
         finalConfig.businessHours = "평일 09:00 - 18:30";
 
         if (!finalConfig.social) {
@@ -103,7 +106,7 @@ export default function App() {
         }
 
         setConfig(finalConfig);
-        localStorage.setItem("ilsong_law_site_config_v5", JSON.stringify(finalConfig));
+        localStorage.setItem("ilsong_law_site_config_v6", JSON.stringify(finalConfig));
       }
     } catch (e) {
       console.error("Failed to load local storage site config:", e);
@@ -114,7 +117,7 @@ export default function App() {
   const handleUpdateConfig = (newConfig: SiteConfig) => {
     setConfig(newConfig);
     try {
-      localStorage.setItem("ilsong_law_site_config_v5", JSON.stringify(newConfig));
+      localStorage.setItem("ilsong_law_site_config_v6", JSON.stringify(newConfig));
       
       // Update browser tab title and dynamic description for simulation
       document.title = newConfig.seo.metaTitle || newConfig.siteName;
