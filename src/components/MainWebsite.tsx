@@ -266,24 +266,24 @@ export default function MainWebsite({ config, onNavigateToAdmin }: MainWebsitePr
           transition={{ duration: 0.6, delay: 0.3 }}
           className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto"
         >
-          <button
+          <a
             id="hero-primary-cta"
-            onClick={() => scrollToSection("contact")}
-            className="w-full sm:w-auto px-8 py-4 rounded-xl font-bold text-black flex items-center justify-center gap-3 shadow-xl transition-all hover:scale-[1.01] hover:brightness-110 cursor-pointer"
+            href={`tel:${config.consultationPhone}`}
+            className="w-full sm:w-auto px-10 py-4 rounded-xl font-bold text-black flex items-center justify-center gap-3 shadow-xl transition-all hover:scale-[1.02] hover:brightness-110 cursor-pointer text-base"
             style={accentBg}
           >
-            <MessageSquare className="w-5 h-5 text-black" />
-            1:1 비공개 상담신청
-          </button>
-          
-          <a
-            id="hero-secondary-cta"
-            href={`tel:${config.consultationPhone}`}
-            className="w-full sm:w-auto px-8 py-4 rounded-xl font-bold bg-zinc-900 border border-white/10 hover:border-white/30 text-white flex items-center justify-center gap-3 transition"
-          >
-            <Phone className="w-5 h-5 text-gray-300" style={accentText} />
+            <Phone className="w-5 h-5 text-black" />
             긴급 전화 상담 연결
           </a>
+          
+          <button
+            id="hero-secondary-cta"
+            onClick={() => scrollToSection("contact")}
+            className="w-full sm:w-auto px-8 py-4 rounded-xl font-bold bg-zinc-900 border border-white/11 hover:border-white/30 text-white flex items-center justify-center gap-3 transition cursor-pointer"
+          >
+            <MapPin className="w-4 h-4" style={accentText} />
+            사무소 위치 안내
+          </button>
         </motion.div>
       </section>
 
@@ -452,178 +452,117 @@ export default function MainWebsite({ config, onNavigateToAdmin }: MainWebsitePr
         </div>
       </section>
 
-      {/* CONTACT & LOCATION (무료 상담 및 오시는 길) */}
+      {/* CONTACT & LOCATION (사무소 오시는 길) */}
       <section id="contact" className="py-20 bg-neutral-950/70 border-t border-white/5 px-6 md:px-12">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-stretch">
           
-          {/* LEFT: INFO & REALTIME MAP SIMULATION */}
-          <div className="lg:col-span-5 flex flex-col justify-between">
+          {/* LEFT: INFO & CALL FOR SERVICE */}
+          <div className="lg:col-span-6 flex flex-col justify-between space-y-8">
             <div>
               <span className="text-xs font-bold uppercase tracking-wider" style={accentText}>Ready to Consultation</span>
               <h2 className="text-3xl md:text-4xl font-extrabold text-white mt-1">사무소 오시는 길 및 영업 정보</h2>
-              <p className="text-xs text-stone-400 mt-3 max-w-md font-light leading-relaxed">
-                법정 기일에 쫓기거나 빠른 면담이 필요하신 경우 직통번호로 예약주시면 진행을 도와드립니다.
+              <p className="text-xs sm:text-sm text-stone-400 mt-4 leading-relaxed font-light">
+                법정 기일에 쫓기거나 빠른 면담이 필요하신 경우 직통번호로 전화주시면 변호사 직접 조력 일정을 신속히 조율해 드립니다.
               </p>
 
-              <div className="mt-8 space-y-4 text-xs md:text-sm">
-                <div className="flex items-start gap-3">
-                  <MapPin className="w-5 h-5 flex-shrink-0 text-stone-400 mt-0.5" style={accentText} />
+              <div className="mt-8 space-y-6 text-xs md:text-sm">
+                <div className="flex items-start gap-4">
+                  <div className="p-2 rounded-lg bg-white/5 border border-white/10" style={accentText}>
+                    <MapPin className="w-5 h-5 flex-shrink-0" />
+                  </div>
                   <div>
-                    <span className="font-semibold text-white block">사무소 주소</span>
-                    <span className="text-stone-300 font-light block mt-0.5">{config.address}</span>
+                    <span className="font-semibold text-white block text-sm">사무소 주소</span>
+                    <span className="text-stone-300 font-light block mt-1 leading-relaxed">{config.address}</span>
                   </div>
                 </div>
 
-                <div className="flex items-start gap-3">
-                  <Phone className="w-5 h-5 flex-shrink-0 text-stone-400 mt-0.5" style={accentText} />
+                <div className="flex items-start gap-4">
+                  <div className="p-2 rounded-lg bg-white/5 border border-white/10" style={accentText}>
+                    <Phone className="w-5 h-5 flex-shrink-0" />
+                  </div>
                   <div>
-                    <span className="font-semibold text-white block">유선 상담 및 예약전화</span>
-                    <a href={`tel:${config.consultationPhone}`} className="text-emerald-400 font-bold block mt-0.5 hover:underline" style={{ color: accentHex }}>
+                    <span className="font-semibold text-white block text-sm">유선 상담 및 예약전화</span>
+                    <a href={`tel:${config.consultationPhone}`} className="text-emerald-400 font-bold block mt-1 hover:underline text-base sm:text-lg" style={{ color: accentHex }}>
                       {config.consultationPhone}
                     </a>
                   </div>
                 </div>
 
-                <div className="flex items-start gap-3">
-                  <Clock className="w-5 h-5 flex-shrink-0 text-stone-400 mt-0.5" style={accentText} />
+                <div className="flex items-start gap-4">
+                  <div className="p-2 rounded-lg bg-white/5 border border-white/10" style={accentText}>
+                    <Clock className="w-5 h-5 flex-shrink-0" />
+                  </div>
                   <div>
-                    <span className="font-semibold text-white block">상담 가능 시간</span>
-                    <span className="text-stone-300 font-light block mt-0.5">{config.businessHours}</span>
+                    <span className="font-semibold text-white block text-sm">상담 가능 시간</span>
+                    <span className="text-stone-300 font-light block mt-1">{config.businessHours}</span>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Premium Stylized Map Placeholder */}
-            <div className="mt-8 bg-zinc-900 border border-white/5 rounded-2xl p-5 relative overflow-hidden h-32 flex flex-col justify-end">
-              <div 
-                className="absolute inset-0 opacity-15"
-                style={{
-                  backgroundImage: "radial-gradient(circle at 1px 1px, white 1px, transparent 0)",
-                  backgroundSize: "20px 20px"
-                }}
-              />
-              
-              <div className="relative z-10 flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <span className="flex h-3 w-3 relative">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75 bg-emerald-400"></span>
-                    <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500" style={accentBg}></span>
-                  </span>
-                  <span className="text-xs font-bold text-white">법률사무소 일송 민석타워 206호</span>
-                </div>
+            <div className="bg-zinc-900/40 border border-white/5 rounded-2xl p-6">
+              <h4 className="text-sm font-bold text-white mb-2">방문 및 상담 전 유의사항</h4>
+              <p className="text-xs text-stone-400 font-light leading-relaxed">
+                공동법률사무소 일송은 의뢰인의 사건 하나하나를 변호사들이 완벽히 직무 분석하여 최고의 대처방안을 준비합니다. 미리 긴급 유선 상담번호로 사건 내용 및 일정을 예약해 주시면 훨씬 명확한 1차 진단 및 깊이 있는 실전 변론 자문이 제공됩니다.
+              </p>
+            </div>
+          </div>
+
+          {/* RIGHT: MAP SIMULATION BLOCK */}
+          <div className="lg:col-span-6 flex flex-col justify-between bg-zinc-900/30 border border-white/5 rounded-3xl p-6 md:p-8 relative overflow-hidden min-h-[400px]">
+            <div 
+              className="absolute inset-0 opacity-[0.06]"
+              style={{
+                backgroundImage: "radial-gradient(circle at 1px 1px, white 1.5px, transparent 0)",
+                backgroundSize: "24px 24px"
+              }}
+            />
+            
+            <div className="relative z-10 flex flex-col h-full justify-between gap-8">
+              <div>
+                <span className="text-[10px] font-mono tracking-widest text-stone-500 uppercase">Interactive Map Projection</span>
+                <h3 className="text-lg font-bold text-white mt-1">상세 위치 지도 및 편리한 대중교통 이용 안내</h3>
+                <p className="text-xs text-stone-400 mt-2 font-light leading-relaxed">
+                  대중교통 이용 시 대전 지하철 1호선 <span className="text-emerald-400 font-semibold">시청역 8번 출구</span>에서 도보 약 3분 거리에 위치하고 있어 쉽게 방문하실 수 있습니다.
+                </p>
+              </div>
+
+              {/* Styled Visual Map Graphic */}
+              <div className="flex-grow w-full rounded-2xl bg-black/60 border border-white/10 p-6 flex flex-col items-center justify-center relative min-h-[180px] group">
+                <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-transparent pointer-events-none rounded-2xl" />
                 
+                {/* Visual coordinate lines */}
+                <div className="absolute left-1/2 top-4 bottom-4 w-[1px] bg-white/5 border-dashed pointer-events-none" />
+                <div className="absolute left-4 right-4 top-1/2 h-[1px] bg-white/5 border-dashed pointer-events-none" />
+
+                <div className="relative z-10 flex flex-col items-center text-center">
+                  <div className="relative mb-4">
+                    <span className="flex h-12 w-12 items-center justify-center rounded-full bg-emerald-500/10 border border-emerald-500/20 group-hover:scale-110 duration-300">
+                      <MapPin className="w-6 h-6 text-emerald-400" style={accentText} />
+                    </span>
+                    <span className="absolute inset-0 rounded-full h-12 w-12 animate-ping bg-emerald-400/20 pointer-events-none"></span>
+                  </div>
+
+                  <h4 className="text-sm font-bold text-white mb-1">공동법률사무소 일송</h4>
+                  <p className="text-[11px] text-stone-400 font-light max-w-xs px-4">
+                    대전광역시 서구 둔산중로78번길 26, 206호 (둔산동, 민석타워 206호)
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex flex-col sm:flex-row items-center gap-4 relative z-10">
                 <a 
                   href={`https://map.naver.com/v5/search/${encodeURIComponent("공동법률사무소 일송")}`}
                   target="_blank"
                   rel="noreferrer"
-                  className="px-3 py-1.5 bg-white/5 border border-white/10 hover:bg-white/10 text-[10px] text-white rounded-lg flex items-center gap-1 cursor-pointer"
+                  className="w-full py-3.5 bg-white text-black hover:bg-neutral-200 font-bold text-xs sm:text-sm text-center rounded-xl flex items-center justify-center gap-2 transition cursor-pointer"
                 >
-                  네이버 지도앱 연결 <ExternalLink className="w-3 h-3" />
+                  네이버 지도앱 길찾기 연결 <ExternalLink className="w-4 h-4 text-black" />
                 </a>
               </div>
             </div>
           </div>
 
-          {/* RIGHT: CONSULTATION FORM */}
-          <div className="lg:col-span-7 bg-zinc-900/50 p-6 md:p-8 rounded-2xl border border-white/5">
-            <span className="text-xs font-bold uppercase tracking-wider" style={accentText}>1:1 Confidential Consultation</span>
-            <h3 className="text-xl md:text-2xl font-bold text-white mt-1 mb-6">부동산 형사소송 비공개 밀착 상담 신청</h3>
-
-            {isConsultSubmitted ? (
-              <motion.div 
-                initial={{ opacity: 0, scale: 0.98 }}
-                animate={{ opacity: 1, scale: 1 }}
-                className="bg-emerald-950/40 border border-emerald-500/30 p-8 rounded-xl text-center flex flex-col items-center justify-center h-full min-h-[300px]"
-              >
-                <div className="p-4 bg-emerald-500/10 rounded-full mb-4">
-                  <CheckCircle2 className="w-12 h-12 text-emerald-400" />
-                </div>
-                <h4 className="text-lg font-bold text-white mb-2">원스톱 상담 예약이 정상 접수되었습니다!</h4>
-                <p className="text-xs text-stone-300 leading-relaxed max-w-sm">
-                  입력해주신 유선전화번호(<span className="font-bold text-emerald-400">{consultForm.phone}</span>)로 10분 이내에 일송 형사전담 변호사가 다이렉트 긴급 전화를 드려 1차 기초 조력을 수행해드립니다.
-                </p>
-                <div className="mt-6 text-[10px] text-stone-500 font-mono">
-                  CONFIDENTIAL DECRYPTED SYSTEM: ONLINE
-                </div>
-              </motion.div>
-            ) : (
-              <form onSubmit={handleConsultSubmit} className="space-y-4">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-[11px] text-neutral-400 font-semibold mb-1.5">의뢰인 성함 (필수)</label>
-                    <input 
-                      type="text" 
-                      required
-                      placeholder="의뢰인 성함 입력"
-                      value={consultForm.name}
-                      onChange={(e) => setConsultForm({...consultForm, name: e.target.value})}
-                      className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-emerald-500"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-[11px] text-neutral-400 font-semibold mb-1.5">대표 연락처 (필수)</label>
-                    <input 
-                      type="tel" 
-                      required
-                      placeholder="010-0000-0000"
-                      value={consultForm.phone}
-                      onChange={(e) => setConsultForm({...consultForm, phone: e.target.value})}
-                      className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-emerald-500"
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-[11px] text-neutral-400 font-semibold mb-1.5">부동산 형사/분쟁 분류</label>
-                  <select 
-                    value={consultForm.category}
-                    onChange={(e) => setConsultForm({...consultForm, category: e.target.value})}
-                    className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-xs text-stone-300 focus:outline-none focus:border-emerald-500"
-                  >
-                    <option value="부동산형사사기">부동산 기획사기 (임야/지분 판매)</option>
-                    <option value="지역주택조합">지역주택조합 사기/분담금 미반환</option>
-                    <option value="임대차전세사기">전세사기 / 보증금 미반환 배임</option>
-                    <option value="시행재개발">재개발·시행사 횡령/소유권 다툼</option>
-                    <option value="기타형사">기타 형사/일반 배임횡령 소송</option>
-                  </select>
-                </div>
-
-                <div>
-                  <label className="block text-[11px] text-neutral-400 font-semibold mb-1.5">간략한 피해/사건 경위 (필수)</label>
-                  <textarea 
-                    required
-                    rows={4}
-                    placeholder="현재 입은 사기 피해 사건이나 경찰 소환장 일정 등을 적어주시면 대표 변호사 검토 후 연락드립니다."
-                    value={consultForm.message}
-                    onChange={(e) => setConsultForm({...consultForm, message: e.target.value})}
-                    className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-emerald-500"
-                  />
-                </div>
-
-                <div className="flex items-start gap-2.5 pt-2">
-                  <input 
-                    type="checkbox"
-                    id="chk-agree"
-                    checked={consultForm.agree}
-                    onChange={(e) => setConsultForm({...consultForm, agree: e.target.checked})}
-                    className="mt-0.5 rounded border-white/10 text-emerald-500 focus:ring-opacity-0"
-                  />
-                  <label htmlFor="chk-agree" className="text-[10px] text-neutral-400 leading-normal">
-                    개인정보 수집 및 상담이용 안내방침(24시간 내 긴급 유선 자문 완료 후 영구 파쇄 처리)에 동의합니다.
-                  </label>
-                </div>
-
-                <button
-                  type="submit"
-                  className="w-full py-4 rounded-xl font-bold text-black text-xs sm:text-sm tracking-wide cursor-pointer transition shadow-xl hover:opacity-90"
-                  style={accentBg}
-                >
-                  변호사 다이렉트 긴급 전화상담 접수
-                </button>
-              </form>
-            )}
-          </div>
         </div>
       </section>
 
