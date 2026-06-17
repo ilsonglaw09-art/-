@@ -379,8 +379,8 @@ export default function MainWebsite({ config, onNavigateToAdmin }: MainWebsitePr
             <span className="text-xs font-bold uppercase tracking-wider" style={accentText}>Our Attorneys</span>
             <h2 className="text-3xl md:text-4xl font-extrabold text-white mt-2">일송 대표변호사 소개</h2>
           </div>
-          <p className="text-stone-400 text-xs md:text-sm max-w-md mt-4 md:mt-0 font-light">
-            부동산 지식과 법정 변론 경험을 완벽히 매칭한 실전 중심 최강의 전문 변호인단이 당신의 재산과 삶의 방패가 되어 드립니다.
+          <p className="text-stone-400 text-xs md:text-sm max-w-lg mt-4 md:mt-0 font-light leading-relaxed">
+            부동산, 건설, 형사 분야의 전문 지식과 법정 변론 경험을 종합하여 개별 사안마다 구체적으로 매칭하여 실전 중심 전문 변호인단이 당신의 재산과 삶의 방패가 되어 드립니다.
           </p>
         </div>
 
